@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ghh.mapper.UserMapper">
+    <select id="findById" resultType="User" parameterType="Int">
+        select uid,uname,pwd from users where uid=#{pid}
+    </select>
+    <select id="findAll" resultType="User">
+        select uid,uname,pwd from users
+    </select>
+    <insert id="addproduct"  parameterType="User">
+        INSERT INTO users(uname,db_source) VALUES(#{uname},DATABASE())
+    </insert>
+</mapper>

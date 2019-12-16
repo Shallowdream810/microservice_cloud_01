@@ -1,0 +1,31 @@
+server:
+    port: 8002
+#mybatis的设置
+mybatis:
+    config-location: classpath:mybatis/mybatis.cfg.xml # mybatis配置文件所在路径
+    type-aliases-package: com.ghh.bean # 通过关系映射扫描所有bean别名类所在包
+    mapper-locations: classpath:mybatis/mapper/**/*.xml # mapper映射文件
+spring:
+    application:
+      name: microservice-product #这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
+      #对外报漏的微服务名字，在服务注册中心中application下的字段值，eureka会自动变成全大写
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource # 当前数据源操作类型
+        driver-class-name: com.mysql.cj.jdbc.Driver # mysql驱动包
+        url: jdbc:mysql://127.0.0.1:3306/tx?serverTimezone=GMT%2B8 # 数据库名称
+        username: root
+        password: root
+        dbcp2:
+            min-idle: 5 # 数据库连接池的最小维持连接数
+            initial-size: 5 # 初始化连接数
+            max-total: 5 # 最大连接数
+            max-wait-millis: 150 # 等待连接获取的最大超时时间
+eureka:
+  instance:
+    instance-id: microserivce_cloud_07_provide_product_8002
+    prefer-ip-address: true  #访问路径可以显示ip
+  client:
+    register-with-eureka: true #服务注册 true 注册到服务中心
+    fetchRegistry: true   # true 获取注册信息
+    service-url:    #注册到指定的注册中心或集群
+      defaultZone: http://Eureka7001.com:7001/eureka/,http://Eureka6001.com:6001/eureka/

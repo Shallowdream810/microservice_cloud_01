@@ -1,0 +1,18 @@
+server:
+  port: 80
+eureka:
+  instance:
+    instance-id: microservice_cloud_04_consumer_productor_80   #在server中后面看到的名字
+    prefer-ip-address: true  #访问路径可以显示ip
+  client:
+    register-with-eureka: true #服务注册 true 注册到服务中心
+    fetchRegistry: true   # true 获取注册信息
+    service-url:    #注册到指定的注册中心或集群
+      defaultZone: http://Eureka7001.com:7001/eureka/,http://Eureka6001.com:6001/eureka/
+spring:
+  application:
+    name: consumer
+
+feign:  #开启服务熔断服务降级
+  hystrix:
+    enabled: true
